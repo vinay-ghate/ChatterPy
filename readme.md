@@ -1,7 +1,4 @@
 
----
-
-````md
 # 💬 Flask-SocketIO Chat App
 
 A real-time chat application built with **Flask** and **Socket.IO**, following the **MVC architecture** for clean separation of concerns.
@@ -78,4 +75,3 @@ MIT – Free to use, modify, and share.
 
 ```
 
----
