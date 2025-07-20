@@ -1,3 +1,6 @@
 .qodo
 .venv
 .env
+app.log
+*cpython*
+*.pyc
