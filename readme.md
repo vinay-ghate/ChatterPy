@@ -50,28 +50,8 @@ Then open: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ---
 
-## 🌐 Environment Support (Optional)
-
-Use environment variables or a `.env` file to customize:
-
-* `SECRET_KEY`
-* `FLASK_DEBUG`
-* `CORS_ORIGINS`
-
----
-
-## 📝 To-Do
-
-* Add user authentication
-* Store chat history in a database
-* Admin control panel
-* Emoji/media support
-
----
-
 ## 📄 License
 
 MIT – Free to use, modify, and share.
 
-```
 
