@@ -1,5 +1,5 @@
 
-# 💬 Flask-SocketIO Chat App
+# 💬 ChatterPy - Flask-SocketIO Chat App
 
 A real-time chat application built with **Flask** and **Socket.IO**, following the **MVC architecture** for clean separation of concerns.
 
