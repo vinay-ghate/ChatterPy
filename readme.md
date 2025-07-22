@@ -3,6 +3,8 @@
 
 A real-time chat application built with **Flask** and **Socket.IO**, following the **MVC architecture** for clean separation of concerns.
 
+### Live Demo : [ChatterPy](https://chatterpy-gn28.onrender.com)
+
 ---
 
 ## 🚀 Features
@@ -49,6 +51,7 @@ python run.py
 Then open: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ---
+
 
 ## 📄 License
 
