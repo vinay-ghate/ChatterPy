@@ -1,5 +1,6 @@
 let socket = io();
 let currentRoom = 'General';
+let hasJoinedOnce = false;
 let username = document.getElementById('username').textContent;
 let roomMessages = {};
 
@@ -85,11 +86,12 @@ function sendMessage() {
 }
 
 function joinRoom(room) {
-	if (room === currentRoom) return; // prevent re-joining same room
+	if (room === currentRoom && hasJoinedOnce) return; // allow first join only once
 
 	socket.emit('leave', { room: currentRoom });
 	currentRoom = room;
 	socket.emit('join', { room });
+	hasJoinedOnce = true;
 
 	highlightActiveRoom(room);
 
@@ -97,7 +99,7 @@ function joinRoom(room) {
 	chat.innerHTML = '';
 
 	if (roomMessages[room]) {
-		const displayed = new Set(); // optional: if you want to avoid dupe DOM rendering
+		const displayed = new Set();
 
 		roomMessages[room].forEach((msg) => {
 			const key = `${msg.sender}-${msg.message}-${msg.type}`;
