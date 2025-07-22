@@ -5,6 +5,7 @@ import logging
 
 bp = Blueprint('routes', __name__)
 logger = logging.getLogger(__name__)
+logging.disable(logging.CRITICAL)
 
 face_emojis = [
     "🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨",
