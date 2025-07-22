@@ -8,8 +8,6 @@ logger = logging.getLogger(__name__)
 
 active_users = {}
 
-room_members = {}
-
 def generate_guest_username():
     timestamp = datetime.now().strftime('%H%M')
     return f'Guest{timestamp}{random.randint(1000,9999)}'
@@ -51,17 +49,8 @@ def register_socketio_events(app, socketio):
             logger.warning(f"Invalid room join attempt: {room}")
             return
 
-        if room not in room_members:
-            room_members[room] = []
-
-        # Prevent duplicate join and message
-        if username in room_members[room]:
-            logger.info(f"{username} already in {room}, join ignored")
-            return
-
         join_room(room)
         active_users[request.sid]['room'] = room
-        room_members[room].append(username)
 
         emit('status', {
             'msg': f'{username} has joined the room.',
