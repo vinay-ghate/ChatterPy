@@ -21,3 +21,8 @@ def index():
         username=session['username'],
         rooms=current_app.config['CHAT_ROOMS']
     )
+
+
+@bp.route('/healthCheck')
+def healthCheck():
+    return {"state":"live"}
