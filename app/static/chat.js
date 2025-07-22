@@ -85,19 +85,26 @@ function sendMessage() {
 }
 
 function joinRoom(room) {
+	if (room === currentRoom) return; // prevent re-joining same room
+
 	socket.emit('leave', { room: currentRoom });
 	currentRoom = room;
 	socket.emit('join', { room });
 
 	highlightActiveRoom(room);
 
-	// Show room history
 	const chat = document.getElementById('chat');
 	chat.innerHTML = '';
 
 	if (roomMessages[room]) {
+		const displayed = new Set(); // optional: if you want to avoid dupe DOM rendering
+
 		roomMessages[room].forEach((msg) => {
-			addMessage(msg.sender, msg.message, msg.type);
+			const key = `${msg.sender}-${msg.message}-${msg.type}`;
+			if (!displayed.has(key)) {
+				addMessage(msg.sender, msg.message, msg.type);
+				displayed.add(key);
+			}
 		});
 	}
 }
