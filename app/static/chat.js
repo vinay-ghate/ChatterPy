@@ -85,6 +85,10 @@ function sendMessage() {
 }
 
 function joinRoom(room) {
+	if (room === currentRoom) {
+		// If user tries to join the same room again, do nothing
+		return;
+	}
 	socket.emit('leave', { room: currentRoom });
 	currentRoom = room;
 	socket.emit('join', { room });
@@ -96,9 +100,21 @@ function joinRoom(room) {
 	chat.innerHTML = '';
 
 	if (roomMessages[room]) {
+		// Temporarily disable adding messages to roomMessages to avoid duplication
+		const originalAddMessage = addMessage;
+		addMessage = function(sender, message, type) {
+			// Only update the UI, don't push to roomMessages
+			const chat = document.getElementById('chat');
+			const messageDiv = document.createElement('div');
+			messageDiv.className = `message ${type}`;
+			messageDiv.textContent = `${sender}: ${message}`;
+			chat.appendChild(messageDiv);
+			chat.scrollTop = chat.scrollHeight;
+		};
 		roomMessages[room].forEach((msg) => {
 			addMessage(msg.sender, msg.message, msg.type);
 		});
+		addMessage = originalAddMessage;
 	}
 }
 
